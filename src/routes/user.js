@@ -1,0 +1,23 @@
+import { Router } from "express";
+import UserController from "../controllers/user.js";
+import authMiddleware from "../middleware/authMiddleware.js";
+import userValidator from "../validator/user.js";
+
+const userRouter = new Router();
+userRouter.post("/user/savePost", authMiddleware, UserController.savePost);
+userRouter.post("/user/unsavePost", authMiddleware, UserController.unsavePost);
+userRouter.get("/user/toggleSavePost/:post_id", authMiddleware, UserController.toggleSavePost);
+userRouter.post("/user/followUser", authMiddleware, UserController.followUser);
+userRouter.post("/user/unfollowUser", authMiddleware, UserController.unfollowUser);
+userRouter.get("/user/toggleFollowUser/:followingId", authMiddleware, UserController.toggleFollowUser);
+userRouter.get("/user/getPostsOfUser", authMiddleware, UserController.getPostsOfUser);
+userRouter.get("/user/getUserSinglePost/:id", authMiddleware, UserController.getUserSinglePost);
+userRouter.post("/user/addStoryToUser", authMiddleware, UserController.addStoryToUser);
+userRouter.get("/user/getStoriesOfFollowed", authMiddleware, UserController.getUserFollowingStory);
+userRouter.post("/user/getSpecificUserStory", authMiddleware, UserController.getStoryOfSpecificId);
+userRouter.delete("/user/story", authMiddleware, UserController.deleteStoryFromUser);
+userRouter.put("/userupdate", authMiddleware, UserController.update);
+userRouter.post("/user/search", authMiddleware, UserController.searchUserByUserName);
+userRouter.post("/user/profilePicture", authMiddleware, UserController.profilePicture);
+userRouter.get("/user/singleUser/:userId", authMiddleware, UserController.getSingleUser);
+export default userRouter;
